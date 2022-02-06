@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  selenium:
+    container_name: selenium-firefox
+    image: selenium/standalone-firefox
+    ports:
+      - "4444:4444"
+
+  wt_scrape:
+    container_name: wt_scrape
+    build:
+      context: .
+    volumes:
+      - ./wt:/wt
+    command: >
+      sh -c "python -u execute.py"
+    depends_on:
+      - selenium
