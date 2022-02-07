@@ -72,7 +72,12 @@ def items_array(ctg, wt_dict):
                 prod_data = json.loads(prod_html.text)['props']['pageProps']['product']
 
                 for i in range(len(prod_data['options'])):
-                    brand = prod_data['options'][i]['parameters'][0]['value'].strip() if len(prod_data['options'][i]['parameters']) > 0 else prod_data['model'] if prod_data['model'] is not None else None
+                    try:
+                        prod_has_brand = prod_data['options'][i]['parameters'][0]['value'].strip() != ''
+                    except:
+                        prod_has_brand = False
+
+                    brand = prod_data['options'][i]['parameters'][0]['value'].strip() if len(prod_data['options'][i]['parameters']) > 0 and prod_has_brand else prod_data['manufacturer'] if prod_data['manufacturer'] is not None else None
                     model = prod_data['model'].strip() if prod_data['model'] is not None else None
                     identificator = prod_data['options'][i]['identificator'].strip() if prod_data['options'][i]['identificator'] is not None else None
                     title = (brand if brand is not None else '') + ' ' + (model if model is not None else '')
