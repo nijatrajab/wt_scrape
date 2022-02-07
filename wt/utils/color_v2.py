@@ -16,6 +16,8 @@ def convert_rgb_to_names(hex_color):
         rgb_values.append(hex_to_rgb(color_hex))
 
     kdt_db = KDTree(rgb_values)
-    rgb_tuple = hex_to_rgb(hex_color)
+    if re.match('#', hex_color, re.I) is None:
+        hex_color_edited = '#' + hex_color
+    rgb_tuple = hex_to_rgb(hex_color_edited)
     distance, index = kdt_db.query(rgb_tuple)
     return names[index]
