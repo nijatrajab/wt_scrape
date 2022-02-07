@@ -75,8 +75,8 @@ def items_array(ctg, wt_dict):
                     brand = prod_data['options'][i]['parameters'][0]['value'].strip() if prod_data['options'][i]['parameters'][0]['value'] is not None else None
                     model = prod_data['model'].strip() if prod_data['model'] is not None else None
                     identificator = prod_data['options'][i]['identificator'].strip() if prod_data['options'][i]['identificator'] is not None else None
-                    title = (brand if brand is not None else '') + ' ' + (model if brand is not None else '')
-                    full_title = (title if brand is not None else '') + ' ' + (identificator if brand is not None else '')
+                    title = (brand if brand is not None else '') + ' ' + (model if model is not None else '')
+                    full_title = (title if title is not None else '') + ' ' + (identificator if identificator is not None else '')
                     memory = ''.join(prod_data['options'][i]['memory'].strip().split(' ')) if prod_data['options'][i]['memory'] is not None else None
                     color = convert_rgb_to_names(prod_data['options'][i]['color'].strip()) if prod_data['options'][i]['color'] is not None else None
                     price = prod_data['options'][i]['price']
