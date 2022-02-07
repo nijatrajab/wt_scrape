@@ -3,7 +3,7 @@ import csv
 import time
 import urllib.request
 
-from utils.scrape import items_array
+from utils.scrape_v2 import items_array
 from utils.constants import wt_slug, wt_sub_cat, wt_cat
 
 print("Connecting Selenium Firefox ...")
@@ -27,7 +27,7 @@ all_products = []
 
 start = time.time()
 
-for i in wt_slug[:1]:
+for i in wt_slug:
     all_products += items_array(i, wt_dict)
 
 end = time.time()
