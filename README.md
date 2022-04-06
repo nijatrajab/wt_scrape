@@ -73,3 +73,40 @@ and [`data.json`](https://github.com/nijatrajab/wt_scrape/tree/main/dummy/data.j
   }
 ]
 ```
+
+<<<<<<< HEAD
+# microservices
+
+For Docker run this commands:
+
+1) ```docker-compose build```
+2) ```docker-compose up -d db```
+3) ```docker exec -t models-microservices_db_1 pg_restore -U postgres -d h55 /docker-entrypoint-initdb.d/backup```
+4) ```docker-compose up -d app```
+
+DB will up with initial data. If you have another backup file and want to replace it please replace "backup" file with your backup.
+
+Otherwise:
+
+1) ```pip install -r requirements.txt```
+2) ```alembic upgrade head```
+2) ```uvicorn app.main:app --reload```
+
+```console
+app
+├── api              - web related stuff.
+│   ├── dependencies - dependencies for routes definition.
+│   ├── errors       - definition of error handlers.
+│   └── routes       - web URL's
+├── core             - configuration, events, logging
+├── db               - db related stuff.
+│   ├── migrations   - manually written alembic file
+│   └── repositories - CRUD stuff
+├── models           - pydantic models 
+│   ├── domain       - main models that we will use everywhere
+│   └── schemas      - schemas for using in web routes( it is like a serializers.py in DRF )
+├── resources        - strings that are used in web responses.
+├── services         - logic that is not just crud related.
+└── main.py          - FastAPI application creation
+```
+=======
