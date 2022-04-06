@@ -108,5 +108,5 @@ app
 ├── resources        - strings that are used in web responses.
 ├── services         - logic that is not just crud related.
 └── main.py          - FastAPI application creation
-```
 =======
+```
